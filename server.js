@@ -18,7 +18,7 @@ app.get('/location', (request, response) => {
     const locationData = searchToLatLng(request.query.data);
     response.send(locationData);
   } catch (e) {
-    response.status(500).send('Status 500: So sorry i broke')
+    response.status(500).send('Status 500: This isn\'t working because your data call is incomplete')
   }
 });
 
@@ -50,12 +50,6 @@ app.get('/weather', (request, response) => {
   }
 });
 
-// error handling
-app.use('*', (request, response) => {
-  response.send('you got to the wrong place');
-})
-
-
 // Performs task of building object from JSON file
 function searchWeather() {
   const weatherData = require('./data/darksky.json');
@@ -71,6 +65,12 @@ function WeatherConstructor (element) {
   this.forecast = element.summary,
   this.time = new Date(element.time * 1000).toDateString()
 }
+
+
+// error handling
+app.use('*', (request, response) => {
+  response.send('you got to the wrong place');
+})
 
 // Start the server
 app.listen(PORT, () => {
