@@ -21,47 +21,65 @@ The user should only have to open up the app on the internet and enter the name 
 07-09-2019 1300am - Application now has a fully-functional express server, with a GET route for the weather resource and will display map on page.
 
 ## Credits and Collaborations
-Trevor Dobson and Marisha Hoza
+Day 1 Help Collaborators: Trevor Dobson and Marisha Hoza
+Day 1 Team Credits: Brandon Hurrington, Chris Coulon, Joachen Busch
+
+Day 2 Help Collaborators: 
+Day 2 Team Credits: Brandon Hurrington, Renee Messick
 
 
 # Lab-06
-Number and name of feature: ______Feature 1: repo setup__________________________
+Number and name of feature: Feature 1: repo setup
 
-Estimate of time needed to complete: _10min____
+Estimate of time needed to complete: 10mins
 
-Start time: _0930____
+Start time: 9:30a
 
-Finish time: __1000___
+Finish time: 10:00p
 
-Actual time needed to complete: __30min___
+Actual time needed to complete: 30mins
 
 Driver: Chris
 Navigator: Joachen, Brandon
 
 # Lab-06
-Number and name of feature: ______Feature 2: Locations__________________________
+Number and name of feature: Feature 2: Locations
 
-Estimate of time needed to complete: _45min____
+Estimate of time needed to complete: 45mins
 
-Start time: _1020____
+Start time: 10:20a
 
-Finish time: __1145___
+Finish time: 11:45a
 
-Actual time needed to complete: _1h 25min____
+Actual time needed to complete: 1h 25mins
 
 Driver: Joachen
 Navigator: Chris, Brandon
 
 # Lab-06
-Number and name of feature: ______Feature 3: Weather__________________________
+Number and name of feature: Feature 3: Weather
 
-Estimate of time needed to complete: _30min____
+Estimate of time needed to complete: 30mins
 
-Start time: _1145____
+Start time: 11:45a
 
-Finish time: _1300____
+Finish time: 1:00p
 
-Actual time needed to complete: _1h 15min____
+Actual time needed to complete: 1h 15min
 
 Driver: Brandon
 Navigator: Chris, Joachen
+
+# Lab-07
+Number and name of feature: Code Review
+
+Estimate of time needed to complete: 60 minutes
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+Driver: Renee
+Navigator: Brandon
