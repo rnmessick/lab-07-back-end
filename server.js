@@ -7,6 +7,7 @@ const cors = require('cors');
 // Global variables
 const PORT = process.env.PORT;
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY;
 
 // Construct server with dependency objects
 const app = express();
@@ -35,7 +36,6 @@ function searchToLatLng(request, response) {
 
 // constructor function to build weather objects
 function LocationConstructor(geoData) {
-  console.log(geoData.results);
   this.formatted_query = geoData.results[0].formatted_address;
   this.latitude = geoData.results[0].geometry.location.lat;
   this.longitude = geoData.results[0].geometry.location.lng;
@@ -44,26 +44,25 @@ function LocationConstructor(geoData) {
 
 
 // Use express to get weather data
-app.get('/weather', (request, response) => {
-  try {
-    const weatherData = searchWeather();
-    response.send(weatherData);
-  } catch (e) {
-    response.status(500).send('Status 500: So sorry i broke')
-  }
-});
+app.get('/weather', searchWeather);
 
-// Performs task of building object from JSON file
-function searchWeather() {
-  const weatherData = require('./data/darksky.json');
-
-  return weatherData.daily.data.map(element => WeatherConstructor(element));
+function searchWeather(request, response) {
+  const darkskyURL = `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${request.query.data.latitude},${request.query.data.longitude}`;
+  console.log(darkskyURL);
+  superagent.get(darkskyURL)
+    .then(result => {
+      let weather = result.body.daily.data.map( element => new WeatherConstructor(element));
+      response.send(weather);
+    }).catch(error => {
+      console.error(error);
+      response.status(500).send('Status 500: Life is hard mang.');
+    })
 }
 
 // constructor function to build weather objects
 function WeatherConstructor(element) {
   this.forecast = element.summary,
-    this.time = new Date(element.time * 1000).toDateString()
+  this.time = new Date(element.time * 1000).toDateString()
 }
 
 
