@@ -18,7 +18,7 @@ app.get('/location', (request, response) => {
     const locationData = searchToLatLng(request.query.data);
     response.send(locationData);
   } catch (e) {
-    response.status(500).send('Status 500: So sorry i broke')
+    response.status(500).send('Status 500: This isn\'t working because your data call is incomplete')
   }
 });
 

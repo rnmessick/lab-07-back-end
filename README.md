@@ -75,7 +75,7 @@ Number and name of feature: Code Review
 
 Estimate of time needed to complete: 60 minutes
 
-Start time: 
+Start time: 10:15am
 
 Finish time: 
 
