@@ -77,9 +77,37 @@ Estimate of time needed to complete: 60 minutes
 
 Start time: 10:15am
 
-Finish time: 
+Finish time: 11:15am
 
-Actual time needed to complete: 
+Actual time needed to complete: 60 minutes
 
 Driver: Renee
 Navigator: Brandon
+
+# Lab-07
+Number and name of feature: Heroku
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 11:15am
+
+Finish time: 12:00pm
+
+Actual time needed to complete:  45 minutes
+
+Driver: Brandon
+Navigator: Renee
+
+# Lab-07
+Number and name of feature: Feature 1: data formatting
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 12:0pm
+
+Finish time: 12:10pm
+
+Actual time needed to complete:  10 minutes
+
+Driver: Brandon
+Navigator: Renee

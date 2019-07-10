@@ -35,7 +35,7 @@ function searchToLatLng(query) {
 function LocationConstructor (geoData) {
   this.formatted_query = geoData.results[0].formatted_address;
   this.latitude = geoData.results[0].geometry.location.lat;
-  this.elementlongitude = geoData.results[0].geometry.location.lng;
+  this.longitude = geoData.results[0].geometry.location.lng;
 
 }
 
@@ -54,10 +54,7 @@ app.get('/weather', (request, response) => {
 function searchWeather() {
   const weatherData = require('./data/darksky.json');
 
-  let weatherDetails = [];
-  weatherData.daily.data.forEach(element => weatherDetails.push(new WeatherConstructor(element)) );
-
-  return weatherDetails;
+  return weatherData.daily.data.map(element => WeatherConstructor(element) );
 }
 
 // constructor function to build weather objects
