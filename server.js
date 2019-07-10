@@ -4,15 +4,15 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-// Global vars
+// Global variables
 const PORT = process.env.PORT;
 
-// Make my server
+// Construct server with express
 const app = express();
 app.use(cors());
 
+// Use express to get location data
 app.get('/location', (request, response) => {
-  // response.send('hello world you are on the location path');
   console.log(request.query.data);
   try {
     const locationData = searchToLatLng(request.query.data);
@@ -22,35 +22,41 @@ app.get('/location', (request, response) => {
   }
 });
 
-
-function searchToLatLng(locationName) {
+// Performs task of building object from JSON file
+function searchToLatLng(query) {
   const geoData = require('./data/geo.json');
-  const location = {
-    search_query: locationName,
-    formatted_query: geoData.results[0].formatted_address,
-    latitude: geoData.results[0].geometry.location.lat,
-    longitude: geoData.results[0].geometry.location.lng,
-  }
+  const location = new LocationConstructor(geoData);
+  location.search_query = query;
+
   return location;
 }
 
+// constructor function to build weather objects
+function LocationConstructor (geoData) {
+  this.formatted_query = geoData.results[0].formatted_address;
+  this.latitude = geoData.results[0].geometry.location.lat;
+  this.elementlongitude = geoData.results[0].geometry.location.lng;
+
+}
+
+
+// Use express to get weather data
 app.get('/weather', (request, response) => {
-  // response.send('hello world you are on the weather path');
-  // console.log(request.query.data);
   try {
     const weatherData = searchWeather();
-    console.log(weatherData);
     response.send(weatherData);
   } catch (e) {
     response.status(500).send('Status 500: So sorry i broke')
   }
 });
 
+// error handling
 app.use('*', (request, response) => {
   response.send('you got to the wrong place');
 })
 
 
+// Performs task of building object from JSON file
 function searchWeather() {
   const weatherData = require('./data/darksky.json');
 
@@ -60,6 +66,7 @@ function searchWeather() {
   return weatherDetails;
 }
 
+// constructor function to build weather objects
 function WeatherConstructor (element) {
   this.forecast = element.summary,
   this.time = new Date(element.time * 1000).toDateString()
