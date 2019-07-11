@@ -17,7 +17,7 @@ client.on('error',
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY;
 const EVENTBRITE_API_KEY = process.env.EVENTBRITE_API_KEY;
-const HIKINGPROJECT_API_KEY = process.env.HIKINGPROJECT_API_KEY
+const HIKINGPROJECT_API_KEY = process.env.HIKINGPROJECT_API_KEY;
 
 // Construct server with dependency objects
 const app = express();
@@ -85,7 +85,7 @@ function searchEventbrite(request,response){
   superagent.get(eventBriteURL)
     .then(result => {
       let eventData = result.body.events.map( event => new EventConstructor(event.url, event.name.text, event.start.local, event.summary));
-      // console.log(eventData);
+      // console.log(eventData);  
       response.send(eventData);
     }).catch(error => {
       console.error(error);
