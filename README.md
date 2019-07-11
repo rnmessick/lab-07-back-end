@@ -111,3 +111,17 @@ Actual time needed to complete:  10 minutes
 
 Driver: Brandon
 Navigator: Renee
+
+# Lab-07
+Number and name of feature: Feature 2: weather formatting
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 12:0pm
+
+Finish time: 12:10pm
+
+Actual time needed to complete:  10 minutes
+
+Driver: Brandon
+Navigator: Renee
