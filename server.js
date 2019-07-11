@@ -3,17 +3,26 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const superagent = require('superagent');
+const pg = require('pg');
 
 // Global variables
 const PORT = process.env.PORT;
+const client = new pg.Client(process.env.DATABASE_URL);client.connect();
+client.on('error',
+  error => {
+    console.error(error);
+  }
+)
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY;
 const EVENTBRITE_API_KEY = process.env.EVENTBRITE_API_KEY;
+const HIKINGPROJECT_API_KEY = process.env.HIKINGPROJECT_API_KEY
 
 // Construct server with dependency objects
 const app = express();
 app.use(cors());
-const superagent = require('superagent');
+
 
 // Use express to get location data
 app.get('/location', searchToLatLng);
