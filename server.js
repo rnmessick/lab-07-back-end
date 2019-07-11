@@ -8,6 +8,7 @@ const cors = require('cors');
 const PORT = process.env.PORT;
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const DARKSKY_API_KEY = process.env.DARKSKY_API_KEY;
+const EVENTBRITE_API_KEY = process.env.EVENTBRITE_API_KEY;
 
 // Construct server with dependency objects
 const app = express();
@@ -65,6 +66,31 @@ function WeatherConstructor(element) {
   this.time = new Date(element.time * 1000).toDateString()
 }
 
+//Search Eventbrite
+
+app.get('/events',searchEventbrite);
+
+function searchEventbrite(request,response){
+  const eventBriteURL = `https://www.eventbriteapi.com/v3/events/search/?location.longitude=${request.query.data.longitude}&location.latitude=${request.query.data.latitude}&expand=venue&token=${EVENTBRITE_API_KEY}`;
+
+  superagent.get(eventBriteURL)
+    .then(result => {
+      let eventData = result.body.events.map( event => new EventConstructor(event.url, event.name.text, event.start.local, event.summary));
+      // console.log(eventData);
+      response.send(eventData);
+    }).catch(error => {
+      console.error(error);
+      response.status(500).send('Status 500: Sadly, Events are not working');
+    });
+}
+
+function EventConstructor(link, name, event_date, summary){
+  this.link = link;
+  this.name = name;
+  this.event_date = new Date(event_date).toDateString();
+  this.summary = summary;
+
+}
 
 // error handling
 app.use('*', (request, response) => {
